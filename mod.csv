@@ -1,0 +1,4 @@
+rawfile, maps\mp\gametypes\dm.gsc
+rawfile, maps\mp\_baserace.gsc
+
+xmodel, com_crate01

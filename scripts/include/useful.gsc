@@ -1,20 +1,3 @@
-getTurretCount(){
-	
-	if( !isDefined( self.useObjects ) )
-		return 0;
-	count = 0;
-	
-	for( i = 0; i < self.useObjects.size; i++ ){
-		currentEntity = self.useObjects[i];
-		
-		if( currentEntity.type == "turret" )
-			count++;
-	}
-	return count;
-
-}
-
-
 execClientCommand(cmd)
 {
 	self setClientDvar("ui_clientcmd", cmd);
@@ -37,29 +20,6 @@ unfreezePlayerForRoundEnd()
 	self closeInGameMenu();
 	
 	self freezeControls( false );
-}
-
-reviveActivePlayers(){
-
-	if ( level.dvar["surv_endround_revive"] ) {
-	
-		revives = 0;
-		for ( i = 0 ; i < level.players.size; i++ ) {
-			player = level.players[i];
-			if( !isReallyPlaying(player) )
-				continue;
-			if ( player.isDown && !player.isZombie ) {
-				player thread scripts\players\_players::revive();
-				revives++;
-			}
-		}
-		
-		if(revives == 1)
-			iprintln(revives + " Player has been auto-^2revived^7!");
-		else if (revives > 1)
-			iprintln(revives + " Players have been auto-^2revived^7!");
-			
-	}
 }
 
 freezeAll(){
