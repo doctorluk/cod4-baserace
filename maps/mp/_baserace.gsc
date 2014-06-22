@@ -94,7 +94,4 @@ pickupCrate(crate){
 
 	crate.trigger delete();
 	crate delete();
-	
-	
-
 }
