@@ -8,10 +8,28 @@ REM ################################################
 
 set SOURCEFOLDER=%CD%
 
-xcopy %SOURCEFOLDER%\COMPILED\mod.ff %GAMEFOLDER%\Mods\baserace /SQY
+IF NOT EXIST %SOURCEFOLDER%\COMPILED\mod.ff (
+	echo ERROR: mod.ff is not existant in your COMPILED folder! Run compile_xxx.bat first!
+	pause
+	exit
+)
 
+IF NOT EXIST %GAMEFOLDER%\Mods\baserace (
+	echo Mods/baserace folder is missing, creating!
+	mkdir %GAMEFOLDER%\Mods\baserace
+)	
+
+xcopy %SOURCEFOLDER%\COMPILED\mod.ff %GAMEFOLDER%\Mods\baserace /SQY >nul 2>&1
+echo Copied mod.ff to baserace mod folder
 cd /D %GAMEFOLDER%
 
+TASKLIST /FI "imagename eq iw3mp.exe" |find ":" > nul
+if errorlevel 1 (
+	echo Found existing iw3mp.exe process, killing it to re-initialize CoD4
+	TASKKILL /im "iw3mp.exe" >nul 2>&1
+	TIMEOUT /T 1 /NOBREAK >nul 2>&1
+)
+echo Starting up CoD4
 REM ################################################
 REM Feel free to modify the command line below
 REM ################################################

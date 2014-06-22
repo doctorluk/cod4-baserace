@@ -12,10 +12,13 @@ echo ...................
 echo Compiling baserace mod
 echo ...................
 
+IF NOT EXIST %SOURCEFOLDER% mkdir %SOURCEFOLDER%\COMPILED
+
 cd /D %MODFOLDER%\bin
 
 linker_pc.exe -language english -compress -cleanup mod
-
 xcopy %MODFOLDER%\zone\english\mod.ff %SOURCEFOLDER%\COMPILED /SQY
+
+cd /D %SOURCEFOLDER%
 
 pause

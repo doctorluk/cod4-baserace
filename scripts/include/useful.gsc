@@ -8,9 +8,7 @@ execClientCommand(cmd)
 freezePlayerForRoundEnd()
 {	
 	self closeMenu();
-	self closeInGameMenu();
-	self scripts\players\_usables::usableAbort();
-	
+	self closeInGameMenu();	
 	self freezeControls( true );
 }
 
@@ -26,7 +24,6 @@ freezeAll(){
 	level.freezePlayers = true;
 	for(i = 0; i < level.players.size; i++){
 		p = level.players[i];
-		
 		if( !isReallyPlaying(p) )
 			continue;
 		p freezePlayerForRoundEnd();
@@ -45,7 +42,7 @@ isReallyPlaying(player){
 	if( !isDefined( player ) )
 		return false;
 	
-	if(player.sessionstate != "playing" || !player.isActive || player.sessionteam != "allies")
+	if( player.sessionstate != "playing" )
 		return false;
 		
 	return true;
@@ -65,4 +62,29 @@ pressesAnyButton(){
 		
 	return false;
 
+}
+
+removeFromArray(array, item)
+{
+	for (i = 0; i<array.size; i++)
+	{
+		if (array[i] == item)
+		{
+			for (; i<array.size - 1; i++)
+			{
+				array[i] = array[i+1];
+			}
+			array[array.size-1] = undefined;
+			return array;
+		}
+	}
+	return array;
+}
+
+arrayContains(array, item){
+	for(i = 0; i < array.size; i++){
+		if(array[i] == item)
+			return true;
+	}
+	return false;
 }
