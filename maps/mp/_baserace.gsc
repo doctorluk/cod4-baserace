@@ -1,27 +1,5 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
-/*init(){
-
-	level.buildableObjects = [];
-	level.buildTriggers = [];
-}
-
-
-createBuildableObject(targetname, team, order, typeID, radius){
-
-	if( !isDefined( team ) || !isDefined( getEnt( targetname, "targetname" ) ) )
-		logPrint("ERROR: createBuildableObject called with broken arguments!\n");
-	
-	level.buildableObjects[level.buildableObjects.size] = getEnt( targetname, "targetname" );
-
-}
-
-createCrateSpawn(team, targetname, respawnspeed){
-	
-	
-
-}
-*/
 
 precache(){
 	precacheModel("com_crate01");
@@ -31,23 +9,13 @@ test(){
 
 	level.blueCrates = [];
 	level.redCrates = [];
-
-	level.players = getEntArray( "player", "classname" );
-
-	// for(i = 0; i < level.players.size; i++){
-		// level.players[i] spawn( (0,0,0), (0,0,0) );
-	// }
-	
 	level.cratePosition = [];
 	
 	level.cratePosition[0] = getEnt( "point_blue" , "targetname" ); // RED
 	level.cratePosition[1] = getEnt( "point_red" , "targetname" ); // BLUE
 	
 	thread createCrate( 0 , level.cratePosition[0] );
-	thread createCrate( 1 , level.cratePosition[1] );
-	
-
-	
+	thread createCrate( 1 , level.cratePosition[1] );	
 }
 
 createCrate(teamID, spawntarget){
