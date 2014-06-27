@@ -1,0 +1,20 @@
+=== Spawn Handling ===
+- Add necessary stuff:
+-- Damage Handling
+-- Kill Handling
+-- No Life Restoration
+-- Damage Indicator
+
+=== Messages ===
+- Add predefined messages for round start, welcoming etc.
+
+=== Team Handling ===
+- Rename teams?
+
+=== BASERACE ===
+- Add Mapload Script with basics necessary to create bases
+- Create on[DoSomething] being called when something particular
+- Add main logic
+
+=== HUD ===
+- Add 

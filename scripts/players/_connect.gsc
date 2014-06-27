@@ -55,6 +55,6 @@ Callback_PlayerDisconnect()
 	
 	level.players = removeFromArray(level.players, self);
 	
-	level notify( "disconnected", player );
+	level notify( "disconnected", self );
 	self notify( "disconnect" );
 }
