@@ -18,17 +18,16 @@ test(){
 	thread createCrate( 1 , level.cratePositions[1] );	
 }
 
-createCollectableTrigger(target, height, radius){
-	if( !isDefined( target ) && !isDefined( self ) )
+createCollectableTrigger(height, radius){
+	if( !isDefined( self ) )
 		return;
 	if( !isDefined( height ) )
 		height = 20;
 	if( !isDefined( radius ) )
 		radius = 20;
 		
-	trigger = spawn( "trigger_radius", target.origin, 0, height, radius );
-	target.trigger = trigger;
-	target thread watchCratePickup();
+	trigger = spawn( "trigger_radius", self.origin, 0, height, radius );
+	self.trigger = trigger;
 }
 
 createCrate(teamID, spawntarget){
@@ -46,7 +45,8 @@ createCrate(teamID, spawntarget){
 	else
 		level.blueCrates[level.blueCrates.size] = crate;
 	
-	createCollectableTrigger(crate, 20, 20);
+	crate createCollectableTrigger(20, 20);
+	self thread watchCratePickup();
 }
 
 watchCratePickup(){
