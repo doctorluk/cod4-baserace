@@ -9,25 +9,36 @@ test(){
 
 	level.blueCrates = [];
 	level.redCrates = [];
-	level.cratePosition = [];
+	level.cratePositions = [];
 	
-	level.cratePosition[0] = getEnt( "point_blue" , "targetname" ); // RED PICK UP
-	level.cratePosition[1] = getEnt( "point_red" , "targetname" ); // BLUE PICK UP
+	level.cratePositions[0] = getEnt( "point_blue" , "targetname" ); // RED PICK UP
+	level.cratePositions[1] = getEnt( "point_red" , "targetname" ); // BLUE PICK UP
 	
-	thread createCrate( 0 , level.cratePosition[0] );
-	thread createCrate( 1 , level.cratePosition[1] );	
+	thread createCrate( 0 , level.cratePositions[0] );
+	thread createCrate( 1 , level.cratePositions[1] );	
+}
+
+createCollectableTrigger(target, height, radius){
+	if( !isDefined( target ) && !isDefined( self ) )
+		return;
+	if( !isDefined( height ) )
+		height = 20;
+	if( !isDefined( radius ) )
+		radius = 20;
+		
+	trigger = spawn( "trigger_radius", target.origin, 0, height, radius );
+	target.trigger = trigger;
+	target thread watchCratePickup();
 }
 
 createCrate(teamID, spawntarget){
 
 	crate = spawn("script_model", spawntarget.origin );
 	crate.angles = spawntarget.angles;
-	crateTrigger = spawn( "trigger_radius", crate.origin, 0, 20, 20 );
 	
 	wait 0.05;
 	
 	crate setModel("com_crate01");
-	crate.trigger = crateTrigger;
 	crate.teamID = teamID;
 	
 	if( !teamID )
@@ -35,8 +46,7 @@ createCrate(teamID, spawntarget){
 	else
 		level.blueCrates[level.blueCrates.size] = crate;
 	
-	crate thread watchCratePickup();
-
+	createCollectableTrigger(crate, 20, 20);
 }
 
 watchCratePickup(){
