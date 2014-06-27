@@ -9,6 +9,10 @@ main()
 	maps\mp\gametypes\_callbacksetup::SetupCallbacks();
 	
 	level.teamBased = true;
+	level.console = 0;
+	level.splitscreen = 0;
+	level.onlineGame = true;
+	
 	level.callbackStartGameType = ::Callback_StartGameType;
 	level.script = toLower( getDvar( "mapname" ) );
 	

@@ -6,7 +6,6 @@ precache(){
 }
 
 test(){
-
 	level.blueCrates = [];
 	level.redCrates = [];
 	level.cratePositions = [];
@@ -31,7 +30,6 @@ createCollectableTrigger(height, radius){
 }
 
 createCrate(teamID, spawntarget){
-
 	crate = spawn("script_model", spawntarget.origin );
 	crate.angles = spawntarget.angles;
 	
@@ -46,7 +44,7 @@ createCrate(teamID, spawntarget){
 		level.blueCrates[level.blueCrates.size] = crate;
 	
 	crate createCollectableTrigger(20, 20);
-	self thread watchCratePickup();
+	crate thread watchCratePickup();
 }
 
 watchCratePickup(){
@@ -67,7 +65,6 @@ watchCratePickup(){
 }
 
 pickupCrate(crate){
-
 	self iprintlnbold("You've picked up a crate!");
 
 	crate.trigger delete();

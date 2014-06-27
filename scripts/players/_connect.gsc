@@ -5,8 +5,6 @@ init(){
 	callbackSetup();
 	
 	level.players = [];
-	level.console = 0;
-	level.splitscreen = 0;
 }
 
 precache(){
@@ -15,17 +13,16 @@ precache(){
 }
 
 callbackSetup(){
-	level.callbackPlayerConnect = ::Callback_PlayerConnect;
-	level.callbackPlayerDisconnect = ::Callback_PlayerDisconnect;
-	level.autoassign = scripts\players\_players::autoAssign;
-	level.spectator = scripts\players\_players::joinSpectator;
-	level.class = maps\mp\gametypes\_globallogic::menuClass;
-	// level.allies = maps\mp\gametypes\_globallogic::menuAllies;
-	// level.axis = maps\mp\gametypes\_globallogic::menuAxis;
+	level.callbackPlayerConnect 	= ::Callback_PlayerConnect;
+	level.callbackPlayerDisconnect 	= ::Callback_PlayerDisconnect;
+	level.autoassign 				= scripts\players\_spawning::autoAssign;
+	level.spectator 				= scripts\players\_spawning::joinSpectator;
+	level.class 					= maps\mp\gametypes\_globallogic::menuClass;
+	level.allies 					= maps\mp\gametypes\_globallogic::menuAllies;
+	level.axis						= maps\mp\gametypes\_globallogic::menuAxis;
 }
 
-Callback_PlayerConnect()
-{
+Callback_PlayerConnect(){
 	self waittill("begin");
 	
 	iprintln( self.name + " ^7connected." );
@@ -43,12 +40,9 @@ Callback_PlayerConnect()
 	self.pers["team"] = "free";
 	
 	level notify("connected", self);
-	
-	self thread scripts\players\_players::joinSpectator();
 }
 
-Callback_PlayerDisconnect()
-{
+Callback_PlayerDisconnect(){
 	lpselfnum = self getEntityNumber();
 	lpGuid = self getGuid();
 	logPrint("Q;" + lpGuid + ";" + lpselfnum + ";" + self.name + "\n");
