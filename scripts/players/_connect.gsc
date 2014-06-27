@@ -40,8 +40,10 @@ Callback_PlayerConnect()
 	waittillframeend;
 	
 	level.players[level.players.size] =  self;
-	level notify("connected", self);
 	self.pers["team"] = "free";
+	
+	level notify("connected", self);
+	
 	self thread scripts\players\_players::joinSpectator();
 }
 
@@ -53,5 +55,6 @@ Callback_PlayerDisconnect()
 	
 	level.players = removeFromArray(level.players, self);
 	
+	level notify( "disconnected", player );
 	self notify( "disconnect" );
 }

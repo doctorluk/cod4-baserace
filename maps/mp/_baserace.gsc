@@ -11,8 +11,8 @@ test(){
 	level.redCrates = [];
 	level.cratePosition = [];
 	
-	level.cratePosition[0] = getEnt( "point_blue" , "targetname" ); // RED
-	level.cratePosition[1] = getEnt( "point_red" , "targetname" ); // BLUE
+	level.cratePosition[0] = getEnt( "point_blue" , "targetname" ); // RED PICK UP
+	level.cratePosition[1] = getEnt( "point_red" , "targetname" ); // BLUE PICK UP
 	
 	thread createCrate( 0 , level.cratePosition[0] );
 	thread createCrate( 1 , level.cratePosition[1] );	
