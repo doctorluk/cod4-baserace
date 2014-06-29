@@ -190,9 +190,16 @@ spawnPlayer(){
 		
 	// self maps\mp\gametypes\_class::setClass( self.class );
 	// self maps\mp\gametypes\_class::giveLoadout( self.team, self.class );
-
+	
+	spawns = getEntArray("mp_tdm_spawn_" + self.pers["team"] + "_start", "classname");
+	self spawn(spawns[randomint(spawns.size)].origin, spawns[randomint(spawns.size)].angles);
+	
+	self giveweapon(self.primary);
+	self givemaxammo(self.primary);
+	
 	self freezeControls( false );
 	self enableWeapons();
+	
 	// if ( game["state"] == "playing" )
 	// {
 		// team = self.team;
@@ -228,7 +235,9 @@ spawnPlayer(){
 	
 	waittillframeend;
 	self notify( "spawned_player" );
-
+	
+	self switchtoweapon(self.primary);
+	
 	self logstring( "S " + self.origin[0] + " " + self.origin[1] + " " + self.origin[2] );
 
 	// self thread maps\mp\gametypes\_hardpoints::hardpointItemWaiter();
@@ -257,8 +266,6 @@ processClass( response )
 	self closeInGameMenu();
 	
 	// Fuck this... spawn them with default weapons
-	self giveWeapon("ak47_mp");
-	self givemaxammo("ak47_mp");
-	self switchtoweapon("ak47_mp");
+	self.primary = "ak47_mp";
 	self thread [[level.spawnClient]]();
 }
