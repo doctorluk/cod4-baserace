@@ -191,11 +191,10 @@ spawnPlayer(){
 	// self maps\mp\gametypes\_class::setClass( self.class );
 	// self maps\mp\gametypes\_class::giveLoadout( self.team, self.class );
 	
+	
+	
 	spawns = getEntArray("mp_tdm_spawn_" + self.pers["team"] + "_start", "classname");
 	self spawn(spawns[randomint(spawns.size)].origin, spawns[randomint(spawns.size)].angles);
-	
-	self giveweapon(self.primary);
-	self givemaxammo(self.primary);
 	
 	self freezeControls( false );
 	self enableWeapons();
@@ -220,8 +219,8 @@ spawnPlayer(){
 		// thread maps\mp\gametypes\_hud::showClientScoreBar( 5.0 );
 	// }
 
-	if ( getdvar( "scr_showperksonspawn" ) == "" )
-		setdvar( "scr_showperksonspawn", "1" );
+	// if ( getdvar( "scr_showperksonspawn" ) == "" )
+		// setdvar( "scr_showperksonspawn", "1" );
 		
 	// if ( !level.splitscreen && getdvarint( "scr_showperksonspawn" ) == 1 && game["state"] != "postgame" )
 	// {
@@ -236,7 +235,12 @@ spawnPlayer(){
 	waittillframeend;
 	self notify( "spawned_player" );
 	
-	self switchtoweapon(self.primary);
+	/* Weapon Giving HERE */
+	
+	self takeAllWeapons();
+	self GiveWeapon(self.primary);
+	self GiveMaxAmmo(self.primary);
+	self setSpawnWeapon(self.primary);
 	
 	self logstring( "S " + self.origin[0] + " " + self.origin[1] + " " + self.origin[2] );
 
@@ -252,6 +256,8 @@ spawnPlayer(){
 		// We're in the victory screen, but before intermission
 		self freezePlayerForRoundEnd();
 	}
+	// wait 0.05;
+	// self switchtoweapon(self.primary);
 }
 
 /**

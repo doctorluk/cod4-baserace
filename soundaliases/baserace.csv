@@ -38,11 +38,16 @@ name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max
 ## -- OBJECTIVES -- ##
 
 ## AXIS ##
-axis_obj_taken,,baserace/axis/hq_objtaken.mp3,1,1,,,,1500,3000,voice,streamed,,,master,all_mp,,,,,,,,,0.5
-axis_obj_secured,,baserace/axis/hq_objsec.mp3,1,1,,,,1500,3000,voice,streamed,,,master,all_mp,,,,,,,,,0.5
-axis_obj_lost,,baserace/axis/hq_objlost.mp3,1,1,,,,1500,3000,voice,streamed,,,master,all_mp,,,,,,,,,0.5
+axis_obj_taken,1,baserace/vo/axis/hq_objtaken.wav,0.7,0.7,,,,360,600,announcer,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1
+axis_obj_secured,1,baserace/vo/axis/hq_objsec.wav,0.7,0.7,,,,360,600,announcer,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1
+axis_obj_lost,1,baserace/vo/axis/hq_objlost.wav,0.7,0.7,,,,360,600,announcer,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1
+axis_wohoo,1,baserace/vo/axis/wohoo.wav,1,1,,,,600,1000,voice,streamed,,,master,all_mp,,,,,,,,,0.1
 
 ## ALLIES ##
-allies_obj_taken,,baserace/allies/hq_objtaken.mp3,1,1,,,,1500,3000,voice,streamed,,,master,all_mp,,,,,,,,,0.5
-allies_obj_secured,,baserace/allies/hq_objsec.mp3,1,1,,,,1500,3000,voice,streamed,,,master,all_mp,,,,,,,,,0.5
-allies_obj_lost,,baserace/allies/hq_objlost.mp3,1,1,,,,1500,3000,voice,streamed,,,master,all_mp,,,,,,,,,0.5
+allies_obj_taken,1,baserace/vo/allies/hq_objtaken.wav,0.7,0.7,,,,360,600,announcer,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1
+allies_obj_secured,1,baserace/vo/allies/hq_objsec.wav,0.7,0.7,,,,360,600,announcer,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1
+allies_obj_lost,1,baserace/vo/allies/hq_objlost.wav,0.7,0.7,,,,360,600,announcer,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1
+allies_wohoo,1,baserace/vo/allies/wohoo.wav,1,1,,,,600,1000,voice,streamed,,,master,all_mp,,,,,,,,,0.1
+
+## BUILDING ##
+construct_base,1,baserace/world/construct.wav,1,1,,,,600,1000,voice,streamed,,,master,all_mp,,,,,,,,,0.1
