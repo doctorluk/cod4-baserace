@@ -4,6 +4,7 @@
 
 precache(){
 	precacheModel("crate_blue");
+	precacheModel("crate_red");
 }
 
 test(){
@@ -18,8 +19,8 @@ test(){
 	level.walls["axis"] = getent ("wall_red", "targetname");
 	level.walls["allies"] = getent ("wall_blue", "targetname");
 	
-	thread createCrate( 0 , level.cratePositions[0] );
-	thread createCrate( 1 , level.cratePositions[1] );
+	thread createCrate( "axis" , level.cratePositions[0] );
+	thread createCrate( "allies" , level.cratePositions[1] );
 	
 	thread createConstructionTrigger( (1313, 385, 92), "allies" );
 	thread createConstructionTrigger( (-146, 385, 95), "axis" );
@@ -54,19 +55,23 @@ createCollectableTrigger(height, radius){
 	self.trigger = trigger;
 }
 
-createCrate(teamID, spawntarget){
-	crate = spawn("script_model", spawntarget.origin );
+createCrate(team, spawntarget){
+	realSpot = PhysicsTrace( spawntarget.origin + (0,0,50), spawntarget.origin + (0,0,-50) );
+	crate = spawn("script_model", realSpot );
 	crate.angles = spawntarget.angles;
 	
 	wait 0.05;
 	
-	crate setModel("crate_blue");
-	crate.teamID = teamID;
+	crate.team = team;
 	
-	if( !teamID )
+	if( team == "axis" ){
 		level.redCrates[level.redCrates.size] = crate;
-	else
+		crate setmodel("crate_red");
+	}
+	else{
 		level.blueCrates[level.blueCrates.size] = crate;
+		crate setmodel("crate_blue");
+	}
 	
 	crate createCollectableTrigger(20, 20);
 	crate thread watchCratePickup();
