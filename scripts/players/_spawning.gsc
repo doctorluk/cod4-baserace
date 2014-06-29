@@ -1,3 +1,4 @@
+#include scripts\include\useful;
 /**
  * @brief Moves player into a team where the least are, otherwise randomly
  *
@@ -78,6 +79,103 @@ joinSpectator(){
  *
  * @returns nothing
  */
-spawnPlayer(){
+spawnPlayer()
+{
 
+	self endon("disconnect");
+	self endon("joined_spectators");
+	self notify("spawned");
+	self notify("end_respawn");
+
+	resetTimeout();
+
+	self.sessionteam = self.team;
+
+	// hadSpawned = self.hasSpawned;
+
+	self.sessionstate = "playing";
+	self.spectatorclient = -1;
+	self.killcamentity = -1;
+	self.archivetime = 0;
+	self.psoffsettime = 0;
+	self.statusicon = "";
+	if ( level.hardcoreMode )
+		self.maxhealth = 30;
+	else
+		self.maxhealth = 100;
+	self.health = self.maxhealth;
+	
+	self.friendlydamage = undefined;
+	self.hasSpawned = true;
+	self.spawnTime = getTime();
+	self.afk = false;
+	self.lastStand = undefined;
+	
+	//self clearPerks();
+
+	//self setClientDvar( "cg_thirdPerson", "0" );
+	//self setDepthOfField( 0, 0, 512, 512, 4, 0 );
+	//self setClientDvar( "cg_fov", "65" );
+	
+	// [[level.onSpawnPlayer]]();
+	
+	// self maps\mp\gametypes\_missions::playerSpawned();
+
+	// level thread updateTeamStatus();
+		
+	// self maps\mp\gametypes\_class::setClass( self.class );
+	// self maps\mp\gametypes\_class::giveLoadout( self.team, self.class );
+
+	self freezeControls( false );
+	self enableWeapons();
+	// if ( game["state"] == "playing" )
+	// {
+		// team = self.team;
+		
+		// music = game["music"]["spawn_" + team];
+		
+		// thread maps\mp\gametypes\_hud_message::oldNotifyMessage( game["strings"][team + "_name"], undefined, game["icons"][team], game["colors"][team], music );
+		// if ( isDefined( game["dialog"]["gametype"] ) && (!level.splitscreen || self == level.players[0]) )
+		// {
+			// self maps\mp\gametypes\_globallogic::leaderDialogOnPlayer( "gametype" );
+			// if ( team == game["attackers"] )
+				// self maps\mp\gametypes\_globallogic::leaderDialogOnPlayer( "offense_obj", "introboost" );
+			// else
+				// self maps\mp\gametypes\_globallogic::leaderDialogOnPlayer( "defense_obj", "introboost" );
+		// }
+
+		// self setClientDvar( "scr_objectiveText", maps\mp\gametypes\_globallogic::getObjectiveHintText( self.pers["team"] ) );			
+		// thread maps\mp\gametypes\_hud::showClientScoreBar( 5.0 );
+	// }
+
+	if ( getdvar( "scr_showperksonspawn" ) == "" )
+		setdvar( "scr_showperksonspawn", "1" );
+		
+	// if ( !level.splitscreen && getdvarint( "scr_showperksonspawn" ) == 1 && game["state"] != "postgame" )
+	// {
+		// perks = maps\mp\gametypes\_globallogic::getPerks( self );
+		// self maps\mp\gametypes\_hud_util::showPerk( 0, perks[0], -50 );
+		// self maps\mp\gametypes\_hud_util::showPerk( 1, perks[1], -50 );
+		// self maps\mp\gametypes\_hud_util::showPerk( 2, perks[2], -50 );
+		// self thread maps\mp\gametypes\_globallogic::hidePerksAfterTime( 3.0 );
+		// self thread maps\mp\gametypes\_globallogic::hidePerksOnDeath();
+	// }
+	
+	waittillframeend;
+	self notify( "spawned_player" );
+
+	self logstring( "S " + self.origin[0] + " " + self.origin[1] + " " + self.origin[2] );
+
+	// self thread maps\mp\gametypes\_hardpoints::hardpointItemWaiter();
+	
+	//self thread testHPs();
+	//self thread testShock();
+	//self thread testMenu();
+	
+	if ( game["state"] == "postgame" )
+	{
+		assert( !level.intermission );
+		// We're in the victory screen, but before intermission
+		self freezePlayerForRoundEnd();
+	}
 }

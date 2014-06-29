@@ -20,6 +20,7 @@ callbackSetup(){
 	level.class 					= maps\mp\gametypes\_globallogic::menuClass;
 	level.allies 					= maps\mp\gametypes\_globallogic::menuAllies;
 	level.axis						= maps\mp\gametypes\_globallogic::menuAxis;
+	level.spawnClient				= scripts\players\_spawning::spawnPlayer;
 }
 
 Callback_PlayerConnect(){
