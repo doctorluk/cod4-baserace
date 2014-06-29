@@ -79,8 +79,7 @@ joinSpectator(){
  *
  * @returns nothing
  */
-spawnPlayer()
-{
+spawnPlayer(){
 
 	self endon("disconnect");
 	self endon("joined_spectators");

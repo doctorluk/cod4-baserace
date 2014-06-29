@@ -1,6 +1,7 @@
 rawfile,maps\mp\gametypes\_globallogic.gsc
 rawfile,maps\mp\gametypes\_callbacksetup.gsc
 rawfile,maps\mp\gametypes\dm.gsc
+rawfile,maps\mp\gametypes\war.gsc
 rawfile,maps\mp\_baserace.gsc
 
 rawfile,scripts\baserace\_init.gsc
@@ -15,3 +16,5 @@ rawfile,scripts\include\useful.gsc
 rawfile,scripts\include\strings.gsc
 
 xmodel,com_crate01
+
+sound,baserace,,all_mp
