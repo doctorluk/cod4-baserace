@@ -66,6 +66,8 @@ watchCratePickup(){
 
 pickupCrate(crate){
 	self iprintlnbold("You've picked up a crate!");
+	
+	self playSoundOnPlayers(self.pers["team"]+"_obj_taken", self.pers["team"]);
 
 	crate.trigger delete();
 	crate delete();

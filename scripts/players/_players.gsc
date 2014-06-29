@@ -10,6 +10,8 @@ init(){
 
 precache(){
 
+	precacheitem("ak47_mp");
+
 }
 
 onPlayerConnect(){

@@ -20,7 +20,8 @@ IF NOT EXIST %GAMEFOLDER%\Mods\baserace (
 )	
 
 xcopy %SOURCEFOLDER%\COMPILED\mod.ff %GAMEFOLDER%\Mods\baserace /SQY >nul 2>&1
-echo Copied mod.ff to baserace mod folder
+xcopy %SOURCEFOLDER%\sound.iwd %GAMEFOLDER%\Mods\baserace /SQY >nul 2>&1
+echo Copied mod.ff and sound.iwd to baserace mod folder
 cd /D %GAMEFOLDER%
 
 TASKLIST /FI "imagename eq iw3mp.exe" |find ":" > nul

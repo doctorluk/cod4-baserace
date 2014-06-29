@@ -53,17 +53,6 @@ joinAllies(){
 	
 	assign = "allies";
 	
-	// if( level.team["allies"].size > level.team["axis"].size )
-		// assign = "axis";
-	// else if( level.team["allies"].size < level.team["axis"].size )
-		// assign = "allies";
-	// else{
-		// if( randomint(2) )
-			// assign = "axis";
-		// else
-			// assign = "allies";
-	// }
-	
 	if ( assign != self.pers["team"] && (self.sessionstate == "playing" || self.sessionstate == "dead") ){
 		self.switching_teams = true;
 		self.joining_team = assign;
@@ -96,17 +85,6 @@ joinAxis(){
 	self closeInGameMenu();
 	
 	assign = "axis";
-	
-	// if( level.team["allies"].size > level.team["axis"].size )
-		// assign = "axis";
-	// else if( level.team["allies"].size < level.team["axis"].size )
-		// assign = "allies";
-	// else{
-		// if( randomint(2) )
-			// assign = "axis";
-		// else
-			// assign = "allies";
-	// }
 	
 	if ( assign != self.pers["team"] && (self.sessionstate == "playing" || self.sessionstate == "dead") ){
 		self.switching_teams = true;
@@ -265,4 +243,22 @@ spawnPlayer(){
 		// We're in the victory screen, but before intermission
 		self freezePlayerForRoundEnd();
 	}
+}
+
+/**
+ * @brief Processes the class selection in the spawning menu
+ *
+ *
+ * @returns nothing
+ */
+processClass( response )
+{
+	self closeMenu();
+	self closeInGameMenu();
+	
+	// Fuck this... spawn them with default weapons
+	self giveWeapon("ak47_mp");
+	self givemaxammo("ak47_mp");
+	self switchtoweapon("ak47_mp");
+	self thread [[level.spawnClient]]();
 }

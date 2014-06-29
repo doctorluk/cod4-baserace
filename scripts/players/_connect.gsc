@@ -17,7 +17,7 @@ callbackSetup(){
 	level.callbackPlayerDisconnect 	= ::Callback_PlayerDisconnect;
 	level.autoassign 				= scripts\players\_spawning::autoAssign;
 	level.spectator 				= scripts\players\_spawning::joinSpectator;
-	level.class 					= maps\mp\gametypes\_globallogic::menuClass;
+	level.class 					= scripts\players\_spawning::processClass;
 	level.allies 					= scripts\players\_spawning::joinAllies;
 	level.axis						= scripts\players\_spawning::joinAxis;
 	level.spawnClient				= scripts\players\_spawning::spawnPlayer;
