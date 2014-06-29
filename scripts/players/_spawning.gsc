@@ -42,6 +42,94 @@ autoAssign(){
 }
 
 /**
+ * @brief Lets a player join the allied team
+ * @TODO Make it so that a player is given a message on team-switch in case the team is full/oversized and abort his selection
+ *
+ * @returns nothing
+ */
+joinAllies(){
+	self closeMenu();
+	self closeInGameMenu();
+	
+	assign = "allies";
+	
+	// if( level.team["allies"].size > level.team["axis"].size )
+		// assign = "axis";
+	// else if( level.team["allies"].size < level.team["axis"].size )
+		// assign = "allies";
+	// else{
+		// if( randomint(2) )
+			// assign = "axis";
+		// else
+			// assign = "allies";
+	// }
+	
+	if ( assign != self.pers["team"] && (self.sessionstate == "playing" || self.sessionstate == "dead") ){
+		self.switching_teams = true;
+		self.joining_team = assign;
+		self.leaving_team = self.pers["team"];
+		self suicide();
+	}
+	
+	self.pers["team"] = assign;
+	self.team = assign;
+	self.pers["class"] = undefined;
+	self.class = undefined;
+	self.pers["weapon"] = undefined;
+	self.pers["savedmodel"] = undefined;
+	
+	if ( !isAlive( self ) )
+		self.statusicon = "hud_status_dead";
+	
+	self openMenu( game[ "menu_changeclass_" + self.pers["team"] ] );
+	self setclientdvar( "g_scriptMainMenu", game[ "menu_class_" + self.pers["team"] ] );
+}
+
+/**
+ * @brief Lets a player join the axis team
+ * @TODO Make it so that a player is given a message on team-switch in case the team is full/oversized and abort his selection
+ *
+ * @returns nothing
+ */
+joinAxis(){
+	self closeMenu();
+	self closeInGameMenu();
+	
+	assign = "axis";
+	
+	// if( level.team["allies"].size > level.team["axis"].size )
+		// assign = "axis";
+	// else if( level.team["allies"].size < level.team["axis"].size )
+		// assign = "allies";
+	// else{
+		// if( randomint(2) )
+			// assign = "axis";
+		// else
+			// assign = "allies";
+	// }
+	
+	if ( assign != self.pers["team"] && (self.sessionstate == "playing" || self.sessionstate == "dead") ){
+		self.switching_teams = true;
+		self.joining_team = assign;
+		self.leaving_team = self.pers["team"];
+		self suicide();
+	}
+	
+	self.pers["team"] = assign;
+	self.team = assign;
+	self.pers["class"] = undefined;
+	self.class = undefined;
+	self.pers["weapon"] = undefined;
+	self.pers["savedmodel"] = undefined;
+	
+	if ( !isAlive( self ) )
+		self.statusicon = "hud_status_dead";
+	
+	self openMenu( game[ "menu_changeclass_" + self.pers["team"] ] );
+	self setclientdvar( "g_scriptMainMenu", game[ "menu_class_" + self.pers["team"] ] );
+}
+
+/**
  * @brief If he is not already, it puts a player into spectator team and spawns him in the air
  *
  *

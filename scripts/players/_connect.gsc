@@ -18,8 +18,8 @@ callbackSetup(){
 	level.autoassign 				= scripts\players\_spawning::autoAssign;
 	level.spectator 				= scripts\players\_spawning::joinSpectator;
 	level.class 					= maps\mp\gametypes\_globallogic::menuClass;
-	level.allies 					= maps\mp\gametypes\_globallogic::menuAllies;
-	level.axis						= maps\mp\gametypes\_globallogic::menuAxis;
+	level.allies 					= scripts\players\_spawning::joinAllies;
+	level.axis						= scripts\players\_spawning::joinAxis;
 	level.spawnClient				= scripts\players\_spawning::spawnPlayer;
 }
 
