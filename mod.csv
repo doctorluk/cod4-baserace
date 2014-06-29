@@ -15,6 +15,7 @@ rawfile,scripts\players\_spawning.gsc
 rawfile,scripts\include\useful.gsc
 rawfile,scripts\include\strings.gsc
 
-xmodel,com_crate01
+xmodel,crate_blue
+material,mtl_crate_blue1
 
 sound,baserace,,all_mp

@@ -3,7 +3,7 @@
 #include maps\mp\gametypes\_hud_util;
 
 precache(){
-	precacheModel("com_crate01");
+	precacheModel("crate_blue");
 }
 
 test(){
@@ -60,7 +60,7 @@ createCrate(teamID, spawntarget){
 	
 	wait 0.05;
 	
-	crate setModel("com_crate01");
+	crate setModel("crate_blue");
 	crate.teamID = teamID;
 	
 	if( !teamID )
