@@ -121,19 +121,6 @@ appendToDvar( dvar, string ){
 	setDvar( dvar, getDvar( dvar ) + string );
 }
 
-getFullClassName(){
-	switch(self.class){
-		case "soldier": return "Soldier";
-		case "armored": return "Armored";
-		case "stealth": return "Assassin";
-		case "engineer": return "Engineer";
-		case "scout": return "Scout";
-		case "medic": return "Medic";
-		default: return "undefined";
-	}
-}
-
-
 /* Returns the approximate required time to display a string on a client, increasing the display time for every 4 characters of a string */
 getTimeForString(stringCount, min){
 	if(!isDefined(min))

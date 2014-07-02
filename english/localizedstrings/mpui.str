@@ -23,10 +23,10 @@ REFERENCE           SABOTAGE_CUSTOM
 LANG_ENGLISH        "Sabotage (Custom)"
 
 REFERENCE           DEATHMATCH
-LANG_ENGLISH        "Free-for-all"
+LANG_ENGLISH        "Baserace"
 
 REFERENCE           TEAM_DEATHMATCH
-LANG_ENGLISH        "Team Deathmatch"
+LANG_ENGLISH        "Baserace"
 
 REFERENCE           CAPTURE_THE_FLAG
 LANG_ENGLISH        "Capture the Flag"
