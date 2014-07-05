@@ -1,7 +1,7 @@
 # Compiled mod.ff #
 ###################
-*.ff
+COMPILED/*.ff
 
 # IWD Archives #
 ################
-*.iwd
+/*.iwd
