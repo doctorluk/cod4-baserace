@@ -14,15 +14,16 @@ IF NOT EXIST %SOURCEFOLDER%\COMPILED\mod.ff (
 	exit
 )
 
+IF NOT EXIST %SOURCEFOLDER%\sound.iwd (
+	echo ERROR: sound.iwd is not existant in your folder! Run pack_iwds_default.bat first!
+	pause
+	exit
+)
+
 IF NOT EXIST %GAMEFOLDER%\Mods\baserace (
 	echo Mods/baserace folder is missing, creating!
 	mkdir %GAMEFOLDER%\Mods\baserace
-)	
-
-xcopy %SOURCEFOLDER%\COMPILED\mod.ff %GAMEFOLDER%\Mods\baserace /SQY >nul 2>&1
-xcopy %SOURCEFOLDER%\sound.iwd %GAMEFOLDER%\Mods\baserace /SQY >nul 2>&1
-echo Copied mod.ff and sound.iwd to baserace mod folder
-cd /D %GAMEFOLDER%
+)
 
 TASKLIST /FI "imagename eq iw3mp.exe" |find ":" > nul
 if errorlevel 1 (
@@ -30,9 +31,18 @@ if errorlevel 1 (
 	TASKKILL /im "iw3mp.exe" >nul 2>&1
 	TIMEOUT /T 1 /NOBREAK >nul 2>&1
 )
+
+xcopy %SOURCEFOLDER%\COMPILED\mod.ff %GAMEFOLDER%\Mods\baserace /SQY >nul 2>&1
+xcopy %SOURCEFOLDER%\sound.iwd %GAMEFOLDER%\Mods\baserace /SQY >nul 2>&1
+xcopy %SOURCEFOLDER%\images.iwd %GAMEFOLDER%\Mods\baserace /SQY >nul 2>&1
+echo Copied mod.ff, sound.iwd and images.iwd to baserace mod folder
+cd /D %GAMEFOLDER%
+
 echo Starting up CoD4
 REM ################################################
 REM Feel free to modify the command line below
 REM ################################################
 
-iw3mp.exe +set fs_game mods/baserace +set developer 1 +set developer_script 1 +set sv_punkbuster 0 +set g_gametype dm +set r_mode 1280x720 +set r_fullscreen 0 +devmap mp_baserace
+iw3mp.exe +set fs_game mods/baserace +set developer 1 +set logfile 2 +set developer_script 1 +set sv_punkbuster 0 +set g_gametype dm +set r_mode 1280x720 +set r_fullscreen 0 +devmap mp_baserace
+
+exit

@@ -17,28 +17,29 @@ if %ERRORLEVEL% neq 9009 ( goto robocopy ) ELSE ( goto xcopy )
 
 :robocopy
 echo Using robocopy to copy more quickly!
-robocopy %SOURCEFOLDER%\animtrees %MODFOLDER%\raw\animtrees /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\english %MODFOLDER%\raw\english /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\fx %MODFOLDER%\raw\fx /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\images %MODFOLDER%\raw\images /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\maps %MODFOLDER%\raw\maps /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\material_properties %MODFOLDER%\raw\material_properties /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\materials %MODFOLDER%\raw\materials /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\mp %MODFOLDER%\raw\mp /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\scripts %MODFOLDER%\raw\scripts /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\shock %MODFOLDER%\raw\shock /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\sound %MODFOLDER%\raw\sound /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\soundaliases %MODFOLDER%\raw\soundaliases /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\ui %MODFOLDER%\raw\ui /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\vision %MODFOLDER%\raw\vision /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\weapons %MODFOLDER%\raw\weapons /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\xanim %MODFOLDER%\raw\xanim /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\xmodel %MODFOLDER%\raw\xmodel /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\xmodelparts %MODFOLDER%\raw\xmodelparts /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER%\xmodelsurfs %MODFOLDER%\raw\xmodelsurfs /E /NS /NC /NFL /NDL /NJH /NJS
-robocopy %SOURCEFOLDER% %MODFOLDER%\zone_source mod.csv /E /NS /NC /NFL /NDL /NJH /NJS
+robocopy %SOURCEFOLDER%\animtrees %MODFOLDER%\raw\animtrees /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\english %MODFOLDER%\raw\english /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\fx %MODFOLDER%\raw\fx /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\images %MODFOLDER%\raw\images /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\maps %MODFOLDER%\raw\maps /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\material_properties %MODFOLDER%\raw\material_properties /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\materials %MODFOLDER%\raw\materials /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\mp %MODFOLDER%\raw\mp /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\scripts %MODFOLDER%\raw\scripts /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\shock %MODFOLDER%\raw\shock /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\sound %MODFOLDER%\raw\sound /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\soundaliases %MODFOLDER%\raw\soundaliases /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\ui %MODFOLDER%\raw\ui /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\ui_mp %MODFOLDER%\raw\ui_mp /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\vision %MODFOLDER%\raw\vision /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\weapons %MODFOLDER%\raw\weapons /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\xanim %MODFOLDER%\raw\xanim /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\xmodel %MODFOLDER%\raw\xmodel /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\xmodelparts %MODFOLDER%\raw\xmodelparts /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER%\xmodelsurfs %MODFOLDER%\raw\xmodelsurfs /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
+robocopy %SOURCEFOLDER% %MODFOLDER%\zone_source mod.csv /E /NS /NC /NFL /NDL /NJH /NJS >nul 2>&1
 echo Done!
-timeout /T 2 /NOBREAK >nul 2>&1
+timeout /T 1 /NOBREAK >nul 2>&1
 exit
 
 :xcopy
@@ -56,6 +57,7 @@ xcopy %SOURCEFOLDER%\shock %MODFOLDER%\raw\shock /SQY
 xcopy %SOURCEFOLDER%\sound %MODFOLDER%\raw\sound /SQY
 xcopy %SOURCEFOLDER%\soundaliases %MODFOLDER%\raw\soundaliases /SQY
 xcopy %SOURCEFOLDER%\ui %MODFOLDER%\raw\ui /SQY
+xcopy %SOURCEFOLDER%\ui_mp %MODFOLDER%\raw\ui_mp /SQY
 xcopy %SOURCEFOLDER%\vision %MODFOLDER%\raw\vision /SQY
 xcopy %SOURCEFOLDER%\weapons %MODFOLDER%\raw\weapons /SQY
 xcopy %SOURCEFOLDER%\xanim %MODFOLDER%\raw\xanim /SQY
@@ -64,5 +66,5 @@ xcopy %SOURCEFOLDER%\xmodelparts %MODFOLDER%\raw\xmodelparts /SQY
 xcopy %SOURCEFOLDER%\xmodelsurfs %MODFOLDER%\raw\xmodelsurfs /SQY
 xcopy %SOURCEFOLDER%\mod.csv %MODFOLDER%\zone_source /SQY
 echo Done!
-timeout /T 2 /NOBREAK >nul 2>&1
+timeout /T 1 /NOBREAK >nul 2>&1
 exit
